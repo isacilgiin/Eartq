@@ -8,9 +8,25 @@
     <UseWPF>true</UseWPF>
     <UseWindowsForms>true</UseWindowsForms>
     <ApplicationIcon>app_icon.ico</ApplicationIcon>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    
+    <!-- Deployment Flags for False Positive Mitigation -->
     <PublishSingleFile>true</PublishSingleFile>
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
     <SelfContained>false</SelfContained>
+    <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
+    <IncludeAllContentForSelfExtract>true</IncludeAllContentForSelfExtract>
+    <ApplicationHighDpiMode>PerMonitorV2</ApplicationHighDpiMode>
+    
+    <!-- Assembly & Reputation Metadata -->
+    <Version>1.0.0</Version>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
+    <Title>Eartq Acil Durum Widget</Title>
+    <Company>Eartq Corporation</Company>
+    <Product>Eartq Widget</Product>
+    <Description>Kamera ve ses kaydetmek icin pratik ve hizli Windows widget'i.</Description>
+    <Copyright>Copyright © 2026 Eartq</Copyright>
   </PropertyGroup>
 
   <ItemGroup>
