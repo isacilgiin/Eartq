@@ -1,33 +1,76 @@
 <Window x:Class="eartq.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Acil Durum Widget" Height="100" Width="100"
+        Title="Acil Durum Widget" Height="140" Width="350"
         WindowStyle="None" AllowsTransparency="True" Background="Transparent" 
         Topmost="True" WindowStartupLocation="Manual" Left="{Binding SystemParameters.WorkArea.Right, FallbackValue=800}" Top="50">
     
-    <Border x:Name="WidgetBorder" 
-            Background="#AA000000" 
-            BorderBrush="Red" BorderThickness="3" 
-            CornerRadius="50" 
-            MouseLeftButtonDown="WidgetBorder_MouseLeftButtonDown">
-        
-        <Border.ContextMenu>
-            <ContextMenu>
-                <MenuItem Header="Ayarlar" Click="MenuSettings_Click" />
-                <MenuItem Header="Çıkış" Click="MenuExit_Click" />
-            </ContextMenu>
-        </Border.ContextMenu>
-        
-        <Button x:Name="BtnRecord" 
-                Background="Transparent" BorderThickness="0" 
-                Click="BtnRecord_Click" Cursor="Hand"
-                HorizontalAlignment="Center" VerticalAlignment="Center">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Kayit Butonu Widget'i -->
+        <Border x:Name="WidgetBorder" 
+                Grid.Row="0"
+                Background="#AA000000" 
+                BorderBrush="Red" BorderThickness="3" 
+                CornerRadius="50" Height="100" Width="100"
+                HorizontalAlignment="Center"
+                MouseLeftButtonDown="WidgetBorder_MouseLeftButtonDown">
             
-            <Ellipse x:Name="RecordIndicator" Width="50" Height="50" Fill="Red" Stroke="White" StrokeThickness="3">
-                <Ellipse.Effect>
-                    <DropShadowEffect Color="Red" BlurRadius="20" ShadowDepth="0" />
-                </Ellipse.Effect>
-            </Ellipse>
-        </Button>
-    </Border>
+            <Border.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Ayarlar" Click="MenuSettings_Click" />
+                    <MenuItem Header="Çıkış" Click="MenuExit_Click" />
+                </ContextMenu>
+            </Border.ContextMenu>
+            
+            <Button x:Name="BtnRecord" 
+                    Background="Transparent" BorderThickness="0" 
+                    Click="BtnRecord_Click" Cursor="Hand"
+                    HorizontalAlignment="Center" VerticalAlignment="Center">
+                
+                <Ellipse x:Name="RecordIndicator" Width="50" Height="50" Fill="Red" Stroke="White" StrokeThickness="3">
+                    <Ellipse.Effect>
+                        <DropShadowEffect Color="Red" BlurRadius="20" ShadowDepth="0" />
+                    </Ellipse.Effect>
+                </Ellipse>
+            </Button>
+        </Border>
+
+        <!-- Deprem Bildirim Alani (Marquee) -->
+        <Border x:Name="EarthquakeBorder" 
+                Grid.Row="1"
+                Background="#88000000" 
+                CornerRadius="10" 
+                Margin="0,5,0,0" 
+                HorizontalAlignment="Center"
+                Width="280" Height="25"
+                ClipToBounds="True">
+            
+            <Canvas Width="280" Height="25" ClipToBounds="True">
+                <TextBlock x:Name="TxtEarthquake" Foreground="#FFAA00" FontWeight="Bold" FontSize="11" Text="Veri Bekleniyor..." 
+                           Canvas.Top="5" Canvas.Left="280" TextWrapping="NoWrap">
+                    <TextBlock.RenderTransform>
+                        <TranslateTransform x:Name="MarqueeTransform" X="0" Y="0" />
+                    </TextBlock.RenderTransform>
+                    <TextBlock.Triggers>
+                        <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+                            <BeginStoryboard>
+                                <Storyboard RepeatBehavior="Forever">
+                                    <DoubleAnimation 
+                                        Storyboard.TargetName="MarqueeTransform" 
+                                        Storyboard.TargetProperty="X" 
+                                        From="0" To="-1800" 
+                                        Duration="0:0:25" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </TextBlock.Triggers>
+                </TextBlock>
+            </Canvas>
+        </Border>
+    </Grid>
 </Window>

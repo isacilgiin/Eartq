@@ -19,6 +19,7 @@ public partial class MainWindow : Window
     private Storyboard _pulseStoryboard;
     private AppSettings _settings;
     private System.Windows.Forms.NotifyIcon _notifyIcon;
+    private System.Windows.Threading.DispatcherTimer _earthquakeTimer;
 
     public MainWindow()
     {
@@ -26,6 +27,20 @@ public partial class MainWindow : Window
         this.Loaded += MainWindow_Loaded;
         SetupPulseAnimation();
         SetupTrayIcon();
+        SetupEarthquakeTimer();
+    }
+
+    private void SetupEarthquakeTimer()
+    {
+        _earthquakeTimer = new System.Windows.Threading.DispatcherTimer();
+        _earthquakeTimer.Interval = TimeSpan.FromMinutes(2);
+        _earthquakeTimer.Tick += async (s, e) => await UpdateEarthquakeData();
+    }
+
+    private async Task UpdateEarthquakeData()
+    {
+        string data = await EarthquakeService.GetLatestEarthquakeAsync();
+        TxtEarthquake.Text = data;
     }
 
     private void SetupTrayIcon()
@@ -80,6 +95,10 @@ public partial class MainWindow : Window
     private async void MainWindow_Loaded(object sender, RoutedEventArgs e)
     {
         _settings = SettingsManager.Load();
+        
+        // Fetch first earthquake data immediately on load
+        await UpdateEarthquakeData();
+        _earthquakeTimer.Start();
         
         string ffmpegPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ffmpeg.exe");
         if (!File.Exists(ffmpegPath))

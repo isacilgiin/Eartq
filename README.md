@@ -7,7 +7,7 @@
 ---
 
 ## 📌 Proje Hakkında
-**Eartq**, her an elinizin altında bulunması gereken durumlarda (deprem, acil durumlar veya anlık kayıt alma ihtiyacı) hızlıca video ve ses kaydı başlatmanızı sağlayan, her zaman üstte duran modern ve ufak bir masaüstü widget uygulamasıdır. 
+**Eartq**, her an elinizin altında bulunması gereken durumlarda (deprem, acil durumlar veya anlık kayıt alma ihtiyacı) hızlıca video ve ses kaydı başlatmanızı sağlayan, her zaman üstte duran modern ve ufak bir masaüstü widget uygulamasıdır. Ayrıca **canlı deprem takip şeridi** ile anlık olarak ülkedeki son sarsıntıları takip etmenize olanak tanır.
 
 Büyük pencerelerle veya karmaşık ayar ekranlarıyla kullanıcıyı yormaz. Ekranda istediğiniz köşede tutabilir veya kullanmadığınız zamanlarda sadece sağ alt köşede (System Tray) gizli modda çalışmasını sağlayabilirsiniz.
 
@@ -16,6 +16,7 @@ Büyük pencerelerle veya karmaşık ayar ekranlarıyla kullanıcıyı yormaz. E
 - **Tek Tıkla Kayıt:** Widget üzerindeki ikona bir kez tıkladığınızda kayıt başlar, bir kez daha tıkladığınızda biter ve MP4 olarak kaydedilir.
 - **Her Zaman Üstte (Topmost):** Widget özelliği sayesinde diğer sayfaların altında kaybolmaz.
 - **Sürüklenebilir:** Ekranın istediğiniz köşesine fare ile taşıyabilirsiniz.
+- **Canlı Deprem Şeridi:** Widget'ın hemen altında kayan yazı (Marquee) şeklinde **Kandilli Rasathanesi** destekli son 5 depremi canlı olarak gösterir.
 - **Arka Planda Çalışma (System Tray):** Widget görüntüsünü Görev Çubuğu (sağ alt köşe) ikonuna çift tıklayarak saklayabilir veya geri getirebilirsiniz.
 - **Otomatik Kurulum:** Kamerayı kaydedebilmek için FFmpeg altyapısına ihtiyaç duyar, uygulamanız ilk açıldığında arka planda kendisi indirip kurulumu sağlar.
 - **Özel Arayüzler:** Geleneksel Windows mesaj kutuları yerine profesyonel görünümlü `ModernMessageBox` uyarılara sahiptir.
